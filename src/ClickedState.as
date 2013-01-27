@@ -15,18 +15,19 @@ package
 
 		override public function update():void
 		{
-			
+			// Click on the card to move to idle
 			if (Input.mousePressed && card.collidePoint(card.x, card.y, Input.mouseX, Input.mouseY))
 			{
 				card.switchtoState(new IdleState());
 			}
+			
 		}
 		
 		override public function init(cardin:Card):void 
 		{
 			super.init(cardin);
 			
-			tweenie.tween(card.graphic, "scale", 1.5, 0.5);
+			tweenie.tween(card.graphic, "scale", 1.2, 0.2);
 			FP.world.addTween(tweenie,true)	
 		}
 	}

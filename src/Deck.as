@@ -41,19 +41,16 @@ package
 				randomValues.push(values.splice(indexToUse, 1)[0]);
 			}
 			
-			for (var i:int ; i < 20 ; i++) 
+			for (var i:int; i < 20; i++) 
 			{
 				(cards[i] as Card).heartValue = randomValues[i];
 			}
-			// last 4
+			// last 4 are 1's
 		}
 		
-		public function getNextCardIndex():Card
+		public function getNextCard():Card
 		{
-			var meh:Card =  cards.pop();
-			FP.console.log(meh.index, meh.heartValue);
-			
-			return meh;
+			return cards.pop();
 		}	
 	}
 }

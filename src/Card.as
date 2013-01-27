@@ -12,6 +12,7 @@ package
 		public var state:CardState = new CardState();
 		private var nextState:CardState = null;
 		
+		// which card it is
 		public var index:int = -1;
 		
 		// these are set in Deck.
