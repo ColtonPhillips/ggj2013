@@ -16,10 +16,12 @@ package
 		public var chinceX:Array = new Array(1, 2, 3, 2, 1, 3, 3, 1, 2, 4, 2, 0, 0, 1, 3, 4, 4, 3, 1, 0, 0, 4, 4, 0);
 		public var chinceY:Array = new Array(2, 1, 2, 3, 1, 1, 3, 3, 0, 2, 4, 2, 1, 0, 0, 1, 3, 4, 4, 3, 0, 0, 4, 4);
 		
-		public var height:int = 700;
-		public var width:int = 500;
-		public var x:int = 10;
-		public var y:int = 10;
+		
+		public static var width:int = 500;
+		public static var height:int = 600;
+		
+		public static var x:int = 0;
+		public static var y:int = 0;
 		
 		public var boardIndex:Array = new Array();
 		public function Board()
@@ -47,15 +49,15 @@ package
 			card.y = boardSpaceToWorld(nextX,nextY)[1] + height/5/2;
 		}
 		// eh, hopefully truncates how we like it!
-		public function worldSpaceToBoard(xin:int, yin:int):Array
+		public static function worldSpaceToBoard(xin:int, yin:int):Array
 		{
-			var xIndex:int = ((xin - x) / width / 5);
-			var yIndex:int = ((yin - y) / height / 5);
+			var xIndex:int = ((xin - x) / (width / 5));
+			var yIndex:int = ((yin - y) / (height / 5));
 			return new Array(xIndex,yIndex);
 		}
 		
 		// For card placement. top left of the goy.
-		public function boardSpaceToWorld(xIndex:int, yIndex:int):Array
+		public static function boardSpaceToWorld(xIndex:int, yIndex:int):Array
 		{
 			var xout:int = xIndex  * (width / 5) + x;
 			var yout:int = yIndex * (height / 5) + y;

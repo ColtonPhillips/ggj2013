@@ -4,6 +4,7 @@ package
 	import net.flashpunk.Entity;
 	import net.flashpunk.Graphic;
 	import net.flashpunk.graphics.Image;
+	import net.flashpunk.utils.Draw;
 	import net.flashpunk.utils.Input;
 	import net.flashpunk.utils.Key;
 
@@ -60,6 +61,12 @@ package
 		public function switchtoState(inState:CardState):void 
 		{
 			nextState = inState;
+		}
+		
+		override public function render():void 
+		{
+			super.render();
+			Draw.text(heartValue.toString(),x,y + 35)
 		}
 	}
 }

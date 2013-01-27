@@ -16,8 +16,9 @@ package
 		override public function update():void
 		{
 			// Click on the card to move to idle
-			if (Input.mousePressed && card.collidePoint(card.x, card.y, Input.mouseX, Input.mouseY))
+			if (Input.mousePressed)// && card.collidePoint(card.x, card.y, Input.mouseX, Input.mouseY))
 			{
+				FP.console.log(Board.worldSpaceToBoard(FP.world.mouseX, FP.world.mouseY)[0]);
 				card.switchtoState(new IdleState());
 			}
 			

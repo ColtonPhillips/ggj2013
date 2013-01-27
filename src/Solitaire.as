@@ -33,7 +33,6 @@ package
 					var nextCard:Card = deck.getNextCard();
 					board.addCard(nextCard);
 					add(nextCard)
-					FP.console.log(board.boardIndex[0][0]);
 					
 				}
 		}
