@@ -1,36 +1,53 @@
 package
 {
+	import flash.display.Graphics;
 	import net.flashpunk.Entity;
+	import net.flashpunk.Graphic;
 	import net.flashpunk.graphics.Image;
 	import net.flashpunk.utils.Input;
 	import net.flashpunk.utils.Key;
 
-	public class MyEntity extends Entity
+	public class Card extends Entity
 	{
+		public var state:CardState = new CardState();
+		private var nextState:CardState = null;
+		
+		// TODO: There are 24 cards
 		[Embed(source = 'res/card.png')] private const CARD:Class;
-		public function MyEntity()
+		public function Card(xin:int, yin:int)
 		{
-			Input.define("Left", 	Key.LEFT, 	Key.A);
-			Input.define("Right", 	Key.RIGHT, 	Key.D);
-			Input.define("Up", 		Key.UP, 	Key.W);
-			Input.define("Down", 	Key.DOWN, 	Key.S);
-			
+			x = xin; y = yin;
 			graphic = new Image(CARD);
+			
+			setHitbox((graphic as Image).width, (graphic as Image).height, 0, 0);
+		
+			state = new IdleState();
+			state.card = this;
 		}
 
 		override public function update():void
 		{
 			super.update();
+			state.update();
 			
-			if (Input.check("Left")) 	{ x -= 5; }
-			if (Input.check("Right"))	{ x += 5; }
-			if (Input.check("Up")) 		{ y -= 5; }
-			if (Input.check("Down")) 	{ y += 5; }
+			// Change states
+			if (nextState != null)
+			{
+				state = nextState;
+				nextState = null;
+				state.card = this;
+			}
+			
 		}
 		
 		override public function added():void
 		{
 			// Called when added to the world
+		}
+		
+		public function switchtoState(inState:CardState):void 
+		{
+			nextState = inState;
 		}
 	}
 }
