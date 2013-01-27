@@ -17,12 +17,13 @@ package
 		public function Card(xin:int, yin:int)
 		{
 			x = xin; y = yin;
-			graphic = new Image(CARD);
 			
-			setHitbox((graphic as Image).width, (graphic as Image).height, 0, 0);
+			graphic = new Image(CARD);
+			setHitbox((graphic as Image).width, (graphic as Image).height, (graphic as Image).width/2, (graphic as Image).height/2);
+			(graphic as Image).centerOrigin();
 		
 			state = new IdleState();
-			state.card = this;
+			state.init(this);
 		}
 
 		override public function update():void
@@ -34,8 +35,8 @@ package
 			if (nextState != null)
 			{
 				state = nextState;
+				state.init(this);
 				nextState = null;
-				state.card = this;
 			}
 			
 		}

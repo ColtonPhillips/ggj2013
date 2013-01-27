@@ -14,5 +14,10 @@ package
 		{
 			
 		}
+		
+		public function init(cardin:Card):void 
+		{
+			card = cardin;
+		}
 	}
 }

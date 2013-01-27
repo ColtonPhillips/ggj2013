@@ -5,7 +5,7 @@ package
 	{
 		public function Solitaire()
 		{
-			add(new Card(50,50));
+			add(new Card(110,111));
 		}
 		override public function update():void
 		{
