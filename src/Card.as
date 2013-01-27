@@ -12,18 +12,28 @@ package
 		public var state:CardState = new CardState();
 		private var nextState:CardState = null;
 		
+		public var index:int = -1;
+		
+		// these are set in Deck.
+		public var heartValue:int = 1;
+		
 		// TODO: There are 24 cards
 		[Embed(source = 'res/card.png')] private const CARD:Class;
-		public function Card(xin:int, yin:int)
+		public function Card(inindex:int)
 		{
-			x = xin; y = yin;
-			
-			graphic = new Image(CARD);
+			graphic = getImageFromIndex();
 			setHitbox((graphic as Image).width, (graphic as Image).height, (graphic as Image).width/2, (graphic as Image).height/2);
 			(graphic as Image).centerOrigin();
 		
 			state = new IdleState();
 			state.init(this);
+			
+			index = inindex;
+		}
+		
+		private function getImageFromIndex():Image
+		{
+			return new Image(CARD);
 		}
 
 		override public function update():void
