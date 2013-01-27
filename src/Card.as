@@ -7,7 +7,7 @@ package
 
 	public class MyEntity extends Entity
 	{
-		[Embed(source = 'res/player.png')] private const PLAYER:Class;
+		[Embed(source = 'res/card.png')] private const CARD:Class;
 		public function MyEntity()
 		{
 			Input.define("Left", 	Key.LEFT, 	Key.A);
@@ -15,7 +15,7 @@ package
 			Input.define("Up", 		Key.UP, 	Key.W);
 			Input.define("Down", 	Key.DOWN, 	Key.S);
 			
-			graphic = new Image(PLAYER);
+			graphic = new Image(CARD);
 		}
 
 		override public function update():void

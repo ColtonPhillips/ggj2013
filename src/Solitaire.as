@@ -1,11 +1,11 @@
 package
 {
 	import net.flashpunk.World;
-	public class MyWorld extends World
+	public class Solitaire extends World
 	{
-		public function MyWorld()
+		public function Solitaire()
 		{
-			add(new MyEntity);
+			add(new Card);
 		}
 		override public function update():void
 		{

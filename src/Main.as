@@ -10,7 +10,7 @@ package
 		{
 			super(800, 600, 60, false);
 
-			FP.world = new MyWorld;
+			FP.world = new Solitaire;
 
 		}
 
