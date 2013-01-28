@@ -20,10 +20,16 @@ package
 		public var heartValue:int = 1;
 		
 		// TODO: There are 24 cards
-		[Embed(source = 'res/card.png')] private const CARD:Class;
+		[Embed(source = 'res/card 00.png')] private const CARD0:Class;
+		[Embed(source = 'res/card 01.png')] private const CARD1:Class;
+		[Embed(source = 'res/card 02.png')] private const CARD2:Class;
+		[Embed(source = 'res/card 03.png')] private const CARD3:Class;
+		[Embed(source = 'res/card 04.png')] private const CARD4:Class;
+		[Embed(source = 'res/card 05.png')] private const CARD5:Class;
+		
 		public function Card(inindex:int)
 		{
-			graphic = getImageFromIndex();
+			graphic = getImageFromIndex(inindex);
 			setHitbox((graphic as Image).width, (graphic as Image).height, (graphic as Image).width/2, (graphic as Image).height/2);
 			(graphic as Image).centerOrigin();
 		
@@ -33,9 +39,33 @@ package
 			index = inindex;
 		}
 		
-		private function getImageFromIndex():Image
+		private function getImageFromIndex(inindex:int):Image
 		{
-			return new Image(CARD);
+			var thecard:int = inindex % 6;
+			
+			switch (thecard)
+			{
+				case 0:
+					return new Image(CARD0);
+					break;
+				case 1:
+					return new Image(CARD1);
+					break;
+				case 2:
+					return new Image(CARD2);
+					break;
+				case 3:
+					return new Image(CARD3);
+					break;
+				case 4:
+					return new Image(CARD4);
+					break;
+				case 5:
+					return new Image(CARD5);
+					break;
+			}
+			
+			return new Image(CARD5);
 		}
 
 		override public function update():void
@@ -66,7 +96,7 @@ package
 		override public function render():void 
 		{
 			super.render();
-			Draw.text(heartValue.toString(),x,y + 35)
+			Draw.text(heartValue.toString(),x-10,y + 30)
 		}
 	}
 }

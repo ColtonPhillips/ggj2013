@@ -105,7 +105,7 @@ package
 		}
 		
 		public function render():void {
-			Draw.rect(x,y,width,height);
+			Draw.rect(x,y,width,height,0x000000);
 		}
 	}
 }

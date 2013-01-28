@@ -11,7 +11,7 @@ package
 			super(500, 600, 60, false);
 
 			FP.world = new Solitaire;
-			FP.console.enable();
+			//FP.console.enable();
 
 		}
 
