@@ -23,16 +23,16 @@ package
 		public static var x:int = 0;
 		public static var y:int = 0;
 		
-		public var boardIndex:Array = new Array();
+		public var cards:Array = new Array();
 		public function Board()
 		{
 			for (var i:int = 0; i < 5; i++) 
 			{
-				boardIndex[i] = new Array ();
+				cards[i] = new Array ();
 				
 				for (var j:int = 0; j < 5; j++) 
 				{
-					boardIndex[i][j] = -1;
+					cards[i][j] = null;
 				}
 			}
 			
@@ -43,7 +43,7 @@ package
 			var nextX:int = chinceX.splice(0, 1);
 			var nextY:int = chinceY.splice(0, 1); 
 			
-			boardIndex[nextX][nextY] = card;
+			cards[nextX][nextY] = card;
 			
 			card.x = boardSpaceToWorld(nextX,nextY)[0] + width/5/2;
 			card.y = boardSpaceToWorld(nextX,nextY)[1] + height/5/2;
@@ -64,11 +64,48 @@ package
 			return new Array(xout, yout);
 		}
 		
+		public function isValidMove(xIndex:int, yIndex:int, targetX:int, targetY:int):Boolean
+		{
+			return true;
+			
+			if (cards[targetX][targetY] is Card)
+			{
+				return false;
+			}
+			
+			// there are four cases
+			var card:Card = cards[xIndex][yIndex];
+			
+			if (xIndex == targetX - 2 && yIndex == targetY)
+			{
+				if (!(cards[xIndex+1][yIndex] is Card )|| card.heartValue < (cards[xIndex+1][yIndex] as Card).heartValue)
+				{
+					return false;
+				}
+				// Remove middle card
+				cards[xIndex + 1][yIndex] = null;
+				return true;
+				
+			}
+			if (xIndex == targetX + 2 && yIndex == targetY)
+			{
+				return true;
+			}
+			if (xIndex == targetX && yIndex == targetY - 2)
+			{
+				return true;
+				//
+			}
+			if (xIndex == targetX && yIndex == targetY + 2)
+			{
+				return true;
+			}
+				
+			return false;
+		}
+		
 		public function render():void {
 			Draw.rect(x,y,width,height);
 		}
-		
-		
-		
 	}
 }
